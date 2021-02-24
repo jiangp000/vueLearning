@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chasrset = "UTF-8">
+    <title> Title</title>
+</head>
+
+<body >
+    <div id="app">
+        我是潘江
+        <div >{{message}}</div>
+        <div >{{site}}</div>
+        <div>{{place}}</div>
+        <div>{{details()}}</div>
+    </div>
+
+<script src="vue.js"></script>
+
+
+<script>
+    // let（变量） 和 const（常量）   ES6 不用var
+    const app = new Vue({
+        // 用于挂在要管理的元素
+        el: "#app",
+        // 定义数据
+        data: { 
+            message: "hello world",
+            site: "the Imperial Palace",
+            place: "nan tong beibei xinli",
+            name: "jiang jiang "
+        },
+        methods: {
+            details:function(){
+                return this.name +" 学的不仅仅是技术"
+            }
+        }
+    })
+</script>
+
+</body>
+
+</html>

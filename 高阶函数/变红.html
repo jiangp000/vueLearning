@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in message" v-bind:class="{active: index == currentIndex}" @click="liClick(index)">{{index}}. {{item}}</li>
+        </ul>
+    </div>
+
+    <script src="../learn01/vue.js"></script>
+
+    <script>
+        // let（变量） 和 const（常量）   ES6 不用var
+        const app = new Vue({
+            // 用于挂在要管理的元素
+            el: "#app",
+            // 定义数据
+            data: {
+                message: ["Algorithm", "lambda", "Vue", "OS"],
+                currentIndex: 0
+            },
+            methods: {
+                liClick(index) {
+                    this.currentIndex = index
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

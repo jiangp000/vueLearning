@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div v-if="message.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            书籍名称
+                        </th>
+                        <th>
+                            出版时间
+                        </th>
+                        <th>
+                            价格
+                        </th>
+                        <th>
+                            购买数量
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) of message">
+                        <td>{{item.name}}</td>
+                        <td>{{item.time}}</td>
+                        <td>{{item.price | showPrice}}</td>
+                        <td>
+                            <button @click="decrease(index)" v-bind:disabled="item.num < 2">-</button> {{item.num}} <button @click="increase(index)">+</button>
+                        </td>
+                        <td>
+                            <button @click="hadnleRemove(index)">移除</button>
+                        </td>
+
+                        <!-- <td v-for="Q of item">{{Q}}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div v-else>购物车为空</div>
+        总价格{{totalPrice |showPrice}} </div>
+
+    <script src="../learn01/vue.js"></script>
+
+    <script>
+        // let（变量） 和 const（常量）   ES6 不用var
+        const app = new Vue({
+            // 用于挂在要管理的元素
+            el: "#app",
+            // 定义数据
+            data: {
+                message: [{
+                    name: "算法导论",
+                    time: "2006——09",
+                    price: 109,
+                    num: 1
+                }, {
+                    name: "操作系统",
+                    time: "2017——09",
+                    price: 99,
+                    num: 1
+                }, {
+                    name: "离散数学",
+                    time: "2016——11",
+                    price: 109,
+                    num: 1
+                }, {
+                    name: "机器学习",
+                    time: "2015——06",
+                    price: 88,
+                    num: 1
+                }],
+                totalPrice: 0
+            },
+            methods: {
+                decrease(index) {
+                    this.message[index].num--
+                },
+                increase(index) {
+                    this.message[index].num++
+                },
+                hadnleRemove(index) {
+                    this.message.shift(index)
+                }
+            },
+            filters: {
+                showPrice(price) {
+                    return "￥" + price.toFixed(2)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
